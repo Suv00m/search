@@ -1,4 +1,4 @@
-![search](banner.png)
+![search](public/banner.png)
 
 #### introduction
 this tool is built for understanding the grep usage and implementation and replicate some feature and improve the overall speed for larger files and make it ai friendly so that it can work on building higher level of context easily for any trained llm.
