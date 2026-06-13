@@ -1,51 +1,82 @@
-![search](public/banner.png)
+![srch](public/banner.png)
 
-#### introduction
-this tool is built for understanding the grep usage and implementation and replicate some feature and improve the overall speed for larger files and make it ai friendly so that it can work on building higher level of context easily for any trained llm.
+# srch
 
-#### our believes
+A fast, grep-inspired search tool built in Rust. Supports regex and fixed-string matching across files and directories, with buffered output optimized for large codebases.
 
-currently it is highly under development 
-and this is not full version as describe above
+---
 
-#### basic usage:
-no build is present so you have build it from source
+## Installation
+
+No pre-built binary is available yet. Build from source using Cargo:
 
 ```bash
-cargo run -- <pattern> <path> [OPTIONS]
+cargo build --release
+./target/release/srch <pattern> <path> [OPTIONS]
 ```
 
-#### examples
+Or run directly without installing:
 
-**plain search:**
 ```bash
-cargo run -- "hello" ./src/main.rs
+cargo run --release -- <pattern> <path> [OPTIONS]
 ```
 
-**search with line numbers:**
-```bash
-cargo run -- "fn main" ./src/main.rs -n
+---
+
+## Usage
+
+```
+srch <PATTERN> <PATH> [OPTIONS]
 ```
 
-**fixed string (no regex):**
-```bash
-cargo run -- "fn.main" ./src/main.rs -F
-```
+| Argument | Description |
+|----------|-------------|
+| `PATTERN` | The search pattern (regex by default) |
+| `PATH` | File or directory to search |
 
-**regex search:**
-```bash
-cargo run -- "fn\s+\w+" ./src/main.rs
-```
-
-**regex + line numbers:**
-```bash
-cargo run -- "use \w+" ./src/main.rs -n
-```
-
-#### flags
+### Options
 
 | Flag | Long | Description |
 |------|------|-------------|
-| `-F` | `--fixed` | treat pattern as fixed string, not regex |
-| `-n` | `--line-number` | print line numbers with matches |
+| `-F` | `--fixed` | Treat pattern as a literal string (disables regex) |
+| `-n` | `--line-number` | Prefix each match with its line number |
 
+---
+
+## Examples
+
+**Plain string search:**
+```bash
+srch "hello" ./src/main.rs
+```
+
+**Search with line numbers:**
+```bash
+srch "fn main" ./src/main.rs -n
+```
+
+**Fixed string — disables regex, matches literally:**
+```bash
+srch "fn.main" ./src/main.rs -F
+```
+
+**Regex search:**
+```bash
+srch "fn\s+\w+" ./src/main.rs
+```
+
+**Regex with line numbers:**
+```bash
+srch "use \w+" ./src/main.rs -n
+```
+
+**Search across a directory:**
+```bash
+srch "TODO" ./src
+```
+
+---
+
+## Status
+
+Active development. Core search, regex support, directory traversal, and buffered output are implemented. Additional features are in progress.
