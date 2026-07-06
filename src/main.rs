@@ -2,6 +2,7 @@ mod search;
 
 use anyhow::Result;
 use clap::Parser;
+use rayon::prelude::*;
 use std::io::{self, BufWriter, Write};
 use std::path::PathBuf;
 
@@ -17,20 +18,31 @@ struct Cli {
     /// the return number of line instead of line
     #[arg(short = 'n', long)]
     line_number: bool,
+    /// flag for case insensitive search
+    #[arg(short = 'i', long)]
+    ignore_case: bool,
 }
 
 fn main() -> Result<()> {
     let args = Cli::parse();
     let stdout = io::stdout();
     let mut out = BufWriter::new(stdout.lock());
-    search::dispatch_file_path(&args.path)
-        .flat_map(|path| search::find_match(&args.pattern, &path, args.fixed).unwrap_or_default())
-        .try_for_each(|(idx, line)| {
+    let paths: Vec<_> = search::dispatch_file_path(&args.path).collect();
+    let results: Vec<_> = paths
+        .par_iter()
+        .map(|path| {
+            search::find_match(&args.pattern, path, args.fixed, args.ignore_case)
+                .unwrap_or_default()
+        })
+        .collect();
+    for matches in results {
+        for (idx, line) in matches {
             if args.line_number {
-                writeln!(out, "{}.{}", idx + 1, line)
+                writeln!(out, "{}.{}", idx + 1, line)?;
             } else {
-                writeln!(out, "{}", line)
+                writeln!(out, "{}", line)?;
             }
-        })?;
+        }
+    }
     Ok(())
 }
