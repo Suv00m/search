@@ -40,6 +40,7 @@ srch <PATTERN> <PATH> [OPTIONS]
 |------|------|-------------|
 | `-F` | `--fixed` | Treat pattern as a literal string (disables regex) |
 | `-n` | `--line-number` | Prefix each match with its line number |
+| `-i` | `--ignore-case` | Case-insensitive matching |
 
 ---
 
@@ -73,6 +74,11 @@ srch "use \w+" ./src/main.rs -n
 **Search across a directory:**
 ```bash
 srch "TODO" ./src
+```
+
+**Case-insensitive search across a directory:**
+```bash
+srch "todo" ./src -i
 ```
 
 ---
