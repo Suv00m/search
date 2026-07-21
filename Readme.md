@@ -1,8 +1,20 @@
-![srch](public/banner.png)
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="srch: parallel regex search across files and directories, shown running against its own source">
+</p>
 
 # srch
 
-A fast, grep-inspired search tool built in Rust. Supports regex and fixed-string matching across files and directories, with buffered output optimized for large codebases.
+A fast, grep-inspired search tool built in Rust. Regex or fixed-string matching across files and directories, parallelized across files with [Rayon](https://github.com/rayon-rs/rayon).
+
+---
+
+## Why srch
+
+- **Regex or literal matching** — full regex by default, `-F` switches to a literal fixed-string search.
+- **Recursive directory search** — point it at a directory and every file underneath gets searched.
+- **Parallel across files** — each file is matched concurrently; results are collected and written once they're all ready.
+- **Case-insensitive mode** — `-i` folds case for both regex and literal search.
+- **Buffered output** — results are written through a single `BufWriter`, not one syscall per line.
 
 ---
 
@@ -85,4 +97,4 @@ srch "todo" ./src -i
 
 ## Status
 
-Active development. Core search, regex support, directory traversal, and buffered output are implemented. Additional features are in progress.
+Active development. Core search, regex support, recursive directory traversal, case-insensitive matching, parallel file search, and buffered output are implemented. Additional features are in progress.

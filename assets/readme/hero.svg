@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="420" viewBox="0 0 1200 420"
+     role="img" aria-labelledby="srch-hero-title srch-hero-desc">
+  <title id="srch-hero-title">srch</title>
+  <desc id="srch-hero-desc">srch: parallel regex search across files and directories. Terminal example running `srch "pub fn" src -n` against the project's own source, matching two lines across nested files.</desc>
+
+  <rect width="1200" height="420" rx="24" fill="#0b0d0f"/>
+  <rect x="1" y="1" width="1198" height="418" rx="23" fill="none" stroke="#23282e" stroke-width="1.5"/>
+
+  <text x="64" y="52" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="14" letter-spacing="2" fill="#767c84">RUST · CLI</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-weight="700">
+    <text x="64" y="168" font-size="92" fill="#f0a860">&#10095;</text>
+    <text x="118" y="168" font-size="92" fill="#f2f3f4">srch</text>
+  </g>
+
+  <text x="64" y="206" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="22" fill="#9aa1a9">Parallel regex search across files and directories.</text>
+
+  <line x1="64" y1="232" x2="1136" y2="232" stroke="#23282e" stroke-width="1.5"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20">
+    <text x="64" y="278" fill="#f0a860">&#10095;</text>
+    <text x="90" y="278" fill="#f2f3f4">srch "pub fn" src -n</text>
+
+    <text x="64" y="312">
+      <tspan fill="#f0a860">4.</tspan><tspan fill="#c7cbd1">pub fn dispatch_file_path(path: &amp;PathBuf)</tspan>
+    </text>
+    <text x="80" y="342" fill="#6b7280">-&gt; Box&lt;dyn Iterator&lt;Item = PathBuf&gt;&gt; {</text>
+
+    <text x="64" y="376">
+      <tspan fill="#f0a860">7.</tspan><tspan fill="#c7cbd1">pub fn find_match(</tspan>
+    </text>
+  </g>
+
+  <text x="1136" y="398" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        font-size="13" letter-spacing="0.5" fill="#565c63">clap · regex · rayon · walkdir</text>
+</svg>
